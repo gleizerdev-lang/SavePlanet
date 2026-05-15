@@ -59,6 +59,7 @@ class Menu:
                     if event.key == pygame.K_DOWN:  # DOWN KEY - PARA BAIXO
                         if menu_option < len(MENU_OPTION) - 1:
                             menu_option += 1
+
                         else:
                             menu_option = 0
                     if event.key == pygame.K_UP:  # UP KEY - PARA cima

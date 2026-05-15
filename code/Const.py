@@ -58,6 +58,14 @@ OPTION_GAME_POSITIONS = [
     (790, 455, 23)
 ]
 
+ENTITY_SPEED = {
+    'Level1Bg0': 0.1,
+    'Level1Bg1': 0.1,
+    'Dust': 0.7,
+    'Planet': 0
+}
+
+
 
 # W
 WIN_WIDTH = 917
