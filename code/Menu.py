@@ -19,8 +19,9 @@ class Menu:
 
     def run(self, ):
         menu_option = 0
-        pygame.mixer_music.load("./asset/menu.mp3")
-        pygame.mixer_music.play(-1)
+        if not pygame.mixer_music.get_busy():
+            pygame.mixer_music.load("./asset/menu.mp3")
+            pygame.mixer_music.play(-1)
         while True:
             self.window.blit(source=self.surf, dest=self.rect)
             self.menu_text(26, "Save Planet:", COLOR_DARK_BLUE, ((767), 63))
