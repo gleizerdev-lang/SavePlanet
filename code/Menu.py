@@ -1,8 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-from lib2to3.pytree import convert
-from pydoc import source_synopsis
-from xml.dom.expatbuilder import TEXT_NODE
 
 import pygame.image
 from pygame import Surface, Rect
@@ -14,14 +9,14 @@ from code.Const import WIN_WIDTH, MENU_OPTION, COLOR_DARK_BLUE, MENU_POSITIONS, 
 class Menu:
     def __init__(self, window):
         self.window = window
-        self.surf = pygame.image.load('./asset/MenuBg.png')
+        self.surf = pygame.image.load('./asset/MenuBg.png').convert_alpha()
         self.rect = self.surf.get_rect(left=0, top=0)
 
     def run(self, ):
         menu_option = 0
         if not pygame.mixer_music.get_busy():
             pygame.mixer_music.load("./asset/menu.mp3")
-            pygame.mixer_music.play(-1)
+            pygame.mixer_music.play(loops=-1, fade_ms=2000)
         while True:
             self.window.blit(source=self.surf, dest=self.rect)
             self.menu_text(26, "Save Planet:", COLOR_DARK_BLUE, ((767), 63))
@@ -36,33 +31,29 @@ class Menu:
             self.menu_text(11, "let them breach the atmosphere.", COLOR_WHITE, ((769), 468))
 
             for i in range(len(MENU_OPTION)):
-                # Obtém a posição (x, y) pré-definida para este índice
                 posicao = MENU_POSITIONS[i]
 
                 if i == menu_option:
-                    # Texto em destaque (selecionado)
                     self.menu_text(23, MENU_OPTION[i], COLOR_DARK_BLUE, posicao)
                 else:
-                    # Texto normal
                     self.menu_text(23, MENU_OPTION[i], COLOR_WHITE, posicao)
 
 
             pygame.display.flip()
 
-            # # Check for all events
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                      pygame.quit()  # close window
-                     quit()  # end pygame
+                     quit()
 
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_DOWN:  # DOWN KEY - PARA BAIXO
+                    if event.key == pygame.K_DOWN:
                         if menu_option < len(MENU_OPTION) - 1:
                             menu_option += 1
 
                         else:
                             menu_option = 0
-                    if event.key == pygame.K_UP:  # UP KEY - PARA cima
+                    if event.key == pygame.K_UP:
                         if menu_option > 0:
                             menu_option -= 1
                         else:

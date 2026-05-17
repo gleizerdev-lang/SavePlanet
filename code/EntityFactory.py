@@ -1,7 +1,10 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+
+import random
+
 from code.Background import Background
 from code.Const import WIN_WIDTH, WIN_HEIGHT
+from code.Enemy import Enemy
+from code.Player import Player
 
 
 class EntityFactory:
@@ -12,16 +15,33 @@ class EntityFactory:
             case 'Level1Bg':
                 list_bg = []
 
-                # 1. Desenha o fundo normal
                 for i in range(2):
                     list_bg.append(Background(f'Level1Bg{i}', (0, 0)))
                     list_bg.append(Background(f'Level1Bg{i}', (0, WIN_HEIGHT)))
 
-                # 2. Desenha a Poeira Cósmica em loop
+
                 list_bg.append(Background('Dust', (0, 0)))
                 list_bg.append(Background('Dust', (0, WIN_HEIGHT)))
 
-                # 3. Desenha o Planeta por cima de tudo
-                list_bg.append(Background('Planet', (130, 245)))
+                #
+                list_bg.append(Background('Planet', (146, 225)))
 
                 return list_bg
+
+            case 'Enemy1':
+
+                enemy = Enemy('Enemy1', (random.randint(60, WIN_WIDTH - 60), -60))
+                return enemy
+
+            case 'Enemy2':
+                enemy = Enemy('Enemy2', (random.randint(60, WIN_WIDTH - 60), -60))
+                return enemy
+
+
+            case 'Player':
+                return Player('Player', (419, 374))
+
+
+            case _:
+                raise ValueError(f'Entidade não encontrada: {entity_name}')
+

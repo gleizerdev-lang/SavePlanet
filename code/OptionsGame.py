@@ -1,5 +1,5 @@
 import pygame
-import sys  # Import necessário para fechar o programa de forma limpa
+import sys
 
 from pygame import Surface, Rect
 from pygame.font import Font
@@ -12,13 +12,12 @@ class OptionsGame:
         self.window = window
         self.surf = pygame.image.load("./asset/OptionsBg.png")
         self.rect = self.surf.get_rect(left=0, top=0)
-        self.clock = pygame.time.Clock()  # Cria o controlador de FPS
+        self.clock = pygame.time.Clock()
 
     def run(self):
         option_game = 0
         while True:
 
-            # 1. Limita o loop a 60 frames por segundo (evita gastar CPU)
             self.clock.tick(60)
             self.window.blit(source=self.surf, dest=self.rect)
             self.options_game_text(26, "Save Planet:", COLOR_DARK_BLUE, ((767), 63))
@@ -26,7 +25,6 @@ class OptionsGame:
 
             self.options_game_text(22, "SELECT DIFFICULTY", COLOR_LIGHT_BLUE, ((768), 165))
 
-            # O laço agora desempacota três valores e passa para a sua função
             for i in range(len(OPTION_GAME)):
                 pos_x, pos_y, text_size = OPTION_GAME_POSITIONS[i]
                 self.options_game_text(text_size, OPTION_GAME[i], COLOR_WHITE, (pos_x, pos_y))
@@ -45,11 +43,8 @@ class OptionsGame:
 
 
 
-
-            # 4. Atualiza a tela de fato para o jogador ver
             pygame.display.flip()
 
-            # 2. Captura de eventos do teclado/mouse/janela
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()

@@ -12,32 +12,16 @@ imagem_poeira = pygame.Surface(
     pygame.SRCALPHA
 )
 
-# ===================================================
-# CONFIGURAÇÕES
-# ===================================================
-
-# porcentagem de preenchimento
-# 0.0 = vazio
-# 1.0 = MUITO carregado
 DENSIDADE = 0.70
 
 # margem vertical
 MARGEM_TOPO = 28
 MARGEM_BAIXO = 28
 
-
-# ===================================================
-# FUNÇÃO AUXILIAR
-# multiplica quantidades pela densidade
-# ===================================================
-
 def qtd(valor):
     return max(1, int(valor * DENSIDADE))
 
 
-# ===================================================
-# CRIA NUVEM SUAVE
-# ===================================================
 
 def criar_nuvem(
     raio,
@@ -78,11 +62,6 @@ def criar_nuvem(
 
     return surf
 
-
-# ===================================================
-# POSIÇÃO VERTICAL SEGURA
-# ===================================================
-
 def gerar_y_seguro(raio):
 
     return random.randint(
@@ -90,10 +69,6 @@ def gerar_y_seguro(raio):
         WIN_HEIGHT - MARGEM_BAIXO - raio // 3
     )
 
-
-# ===================================================
-# CAMADA 1 - FUNDO DISTANTE
-# ===================================================
 
 for _ in range(qtd(18)):
 
@@ -126,10 +101,6 @@ for _ in range(qtd(18)):
         special_flags=pygame.BLEND_ALPHA_SDL2
     )
 
-
-# ===================================================
-# CAMADA 2 - GRANDES MASSAS
-# ===================================================
 
 for _ in range(qtd(24)):
 
@@ -169,10 +140,6 @@ for _ in range(qtd(24)):
         )
 
 
-# ===================================================
-# CAMADA 3 - MÉDIAS
-# ===================================================
-
 for _ in range(qtd(40)):
 
     centro_x = random.randint(0, WIN_WIDTH)
@@ -211,10 +178,6 @@ for _ in range(qtd(40)):
         )
 
 
-# ===================================================
-# CAMADA 4 - PEQUENAS
-# ===================================================
-
 for _ in range(qtd(90)):
 
     raio = random.randint(20, 70)
@@ -247,10 +210,6 @@ for _ in range(qtd(90)):
     )
 
 
-# ===================================================
-# MICRO DETALHES
-# ===================================================
-
 for _ in range(qtd(220)):
 
     raio = random.randint(8, 26)
@@ -276,10 +235,6 @@ for _ in range(qtd(220)):
         special_flags=pygame.BLEND_ALPHA_SDL2
     )
 
-
-# ===================================================
-# PARTÍCULAS
-# ===================================================
 
 for _ in range(qtd(1200)):
 
@@ -308,10 +263,6 @@ for _ in range(qtd(1200)):
         tamanho
     )
 
-
-# ===================================================
-# FILAMENTOS
-# ===================================================
 
 for _ in range(qtd(50)):
 
@@ -364,10 +315,6 @@ for _ in range(qtd(50)):
     )
 
 
-# ===================================================
-# BLUR FINAL
-# ===================================================
-
 mini = pygame.transform.smoothscale(
     imagem_poeira,
     (WIN_WIDTH // 2, WIN_HEIGHT // 2)
@@ -384,10 +331,6 @@ imagem_poeira.blit(
     special_flags=pygame.BLEND_ALPHA_SDL2
 )
 
-
-# ===================================================
-# FADE VERTICAL
-# ===================================================
 
 fade_surface = pygame.Surface(
     (WIN_WIDTH, WIN_HEIGHT),
@@ -424,11 +367,6 @@ imagem_poeira.blit(
     (0, 0),
     special_flags=pygame.BLEND_RGBA_MULT
 )
-
-
-# ===================================================
-# SALVAR
-# ===================================================
 
 pygame.image.save(
     imagem_poeira,
