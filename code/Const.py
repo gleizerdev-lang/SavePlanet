@@ -35,7 +35,8 @@ ENTITY_SPEED = {
     'Planet': 0,
     'Enemy1': 3,
     'Enemy2': 2,
-    'Player': 5
+    'Player': 5,
+    'PlayerShot': 10
 }
 
 ENTITY_HEALTH = {
@@ -49,8 +50,13 @@ ENTITY_HEALTH = {
     'Dust': 999,
     'Planet': 999,
     'Player': 300,
+    'PlayerShot': 1,
     'Enemy1': 50,
     'Enemy2': 60,
+}
+
+ENTITY_SHOT_DELAY  = {
+    'Player': 15,
 }
 
 # M
@@ -83,6 +89,11 @@ OPTION_GAME_POSITIONS = [
     (790, 398, 23),
     (790, 455, 23)
 ]
+
+# P
+PLAYER_KEY_SHOOT = {
+    'Player': pygame.K_UP
+}
 
 SPAWN_TIME = 4000
 

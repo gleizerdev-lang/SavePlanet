@@ -4,9 +4,12 @@ import random
 import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
+
+from code.Enemy import Enemy
 from code.Const import COLOR_WHITE, WIN_HEIGHT, EVENT_ENEMY, SPAWN_TIME
 from code.EntityFactory import EntityFactory
 from code.EntityMediator import EntityMediator
+from code.Player import Player
 
 
 class Level:
@@ -36,6 +39,10 @@ class Level:
             # Desenha as entidades e faz o movimento
             for ent in self.entity_list:
                 ent.move()
+                if isinstance(ent, Player):
+                    shoot = ent.shoot()
+                    if shoot is not None:
+                        self.entity_list.append(shoot)
 
             for ent in self.entity_list:
                 if ent.name != 'Player':
