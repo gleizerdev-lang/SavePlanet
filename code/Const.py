@@ -4,6 +4,8 @@ import pygame.constants
 COLOR_WHITE = (255, 255, 255)
 COLOR_DARK_BLUE = (33, 57, 74)
 COLOR_LIGHT_BLUE = (173, 216, 230)
+COLOR_GREEN = (0,128,0)
+COLOR_CYAN = (0,128,128)
 
 CREDITS = [
     "Autor e Desenvolvedor Principal:", " Gleizer Damasceno",
@@ -24,6 +26,22 @@ CREDITS_POSITIONS = [
     (770, 363, 11),
     (770, 398, 11)
 ]
+
+ENTITY_DAMAGE = {
+    'Level1Bg0': 0,
+    'Level1Bg1': 0,
+    'Level1Bg2': 0,
+    'Level1Bg3': 0,
+    'Level1Bg4': 0,
+    'Level1Bg5': 0,
+    'Level1Bg6': 0,
+    'Dust': 0,
+    'Planet': 999,
+    'Player': 1,
+    'PlayerShot': 30,
+    'Enemy1': 1,
+    'Enemy2': 1,
+}
 
 # E
 EVENT_ENEMY = pygame.USEREVENT + 1
@@ -57,6 +75,22 @@ ENTITY_HEALTH = {
 
 ENTITY_SHOT_DELAY  = {
     'Player': 15,
+}
+
+ENTITY_SCORE = {
+    'Level1Bg0': 0,
+    'Level1Bg1': 0,
+    'Level1Bg2': 0,
+    'Level1Bg3': 0,
+    'Level1Bg4': 0,
+    'Level1Bg5': 0,
+    'Level1Bg6': 0,
+    'Planet': 0,
+    'Player': 0,
+    'Dust': 0,
+    'PlayerShot': 0,
+    'Enemy1': 100,
+    'Enemy2': 125,
 }
 
 # M

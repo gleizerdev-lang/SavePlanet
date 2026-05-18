@@ -6,7 +6,7 @@ from pygame import Surface, Rect
 from pygame.font import Font
 
 from code.Enemy import Enemy
-from code.Const import COLOR_WHITE, WIN_HEIGHT, EVENT_ENEMY, SPAWN_TIME
+from code.Const import COLOR_WHITE, WIN_HEIGHT, EVENT_ENEMY, SPAWN_TIME, COLOR_GREEN
 from code.EntityFactory import EntityFactory
 from code.EntityMediator import EntityMediator
 from code.Player import Player
@@ -65,27 +65,17 @@ class Level:
                         EntityFactory.get_entity(choice)
                     )
 
+            for ent in self.entity_list:
+                if ent.name == 'Player':
+                    self.level_text(14, f'Player Heath: {ent.health} | Score: {ent.score}' , COLOR_GREEN, (10, 25))
+
+
             # printed text
-            self.level_text(
-                text_size=14,
-                text=f'{self.name} - Timeout: {self.timeout / 1000 :.1f}s',
-                text_color=COLOR_WHITE,
-                text_pos=(10, 5)
-            )
+            self.level_text( 14,f'{self.name} - Timeout: {self.timeout / 1000 :.1f}s',COLOR_WHITE,(10, 5))
 
-            self.level_text(
-                text_size=14,
-                text=f'fps: {clock.get_fps() :.0f}',
-                text_color=COLOR_WHITE,
-                text_pos=(10, WIN_HEIGHT - 35)
-            )
+            self.level_text(14,f'fps: {clock.get_fps() :.0f}', COLOR_WHITE,(10, WIN_HEIGHT - 35))
 
-            self.level_text(
-                text_size=14,
-                text=f'entidades: {len(self.entity_list)}',
-                text_color=COLOR_WHITE,
-                text_pos=(10, WIN_HEIGHT - 20)
-            )
+            self.level_text(14,f'entidades: {len(self.entity_list)}', COLOR_WHITE, (10, WIN_HEIGHT - 20))
 
             pygame.display.flip()
             # collisios
@@ -94,6 +84,9 @@ class Level:
 
     def level_text(self, text_size: int, text: str,
                    text_color: tuple, text_pos: tuple):
+
+        # printed texto
+
 
         text_font: Font = pygame.font.SysFont(
             name="Lucida Sans Typewriter",
