@@ -1,4 +1,3 @@
-
 import sys
 import random
 
@@ -7,6 +6,7 @@ from pygame import Surface, Rect
 from pygame.font import Font
 from code.Const import COLOR_WHITE, WIN_HEIGHT, EVENT_ENEMY, SPAWN_TIME
 from code.EntityFactory import EntityFactory
+from code.EntityMediator import EntityMediator
 
 
 class Level:
@@ -81,6 +81,9 @@ class Level:
             )
 
             pygame.display.flip()
+            # collisios
+            EntityMediator.verify_collision(entity_list=self.entity_list)
+            EntityMediator.verify_health(entity_list=self.entity_list)
 
     def level_text(self, text_size: int, text: str,
                    text_color: tuple, text_pos: tuple):

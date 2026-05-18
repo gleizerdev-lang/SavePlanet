@@ -1,4 +1,3 @@
-
 import random
 
 from code.Background import Background
@@ -19,7 +18,6 @@ class EntityFactory:
                     list_bg.append(Background(f'Level1Bg{i}', (0, 0)))
                     list_bg.append(Background(f'Level1Bg{i}', (0, WIN_HEIGHT)))
 
-
                 list_bg.append(Background('Dust', (0, 0)))
                 list_bg.append(Background('Dust', (0, WIN_HEIGHT)))
 
@@ -37,11 +35,8 @@ class EntityFactory:
                 enemy = Enemy('Enemy2', (random.randint(60, WIN_WIDTH - 60), -60))
                 return enemy
 
-
             case 'Player':
                 return Player('Player', (419, 374))
 
-
             case _:
                 raise ValueError(f'Entidade não encontrada: {entity_name}')
-

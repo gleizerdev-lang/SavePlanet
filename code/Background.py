@@ -1,4 +1,3 @@
-
 import pygame
 from code.Const import WIN_WIDTH, WIN_HEIGHT, ENTITY_SPEED
 from code.Entity import Entity
@@ -8,9 +7,7 @@ class Background(Entity):
     def __init__(self, name: str, position: tuple):
         super().__init__(name, position)
 
-
         self.y_f = float(self.rect.y)
-
 
         if self.name == 'Planet':
             # --- CORREÇÃO 1: Preparação da Imagem (Initialization) ---
@@ -49,7 +46,6 @@ class Background(Entity):
             self.angle += 0.05
             if self.angle >= 360.0:
                 self.angle = 0.0
-
 
             if self.angle < 0.01:
                 self.surf = self.original_surf

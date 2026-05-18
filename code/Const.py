@@ -1,16 +1,15 @@
 import pygame.constants
 
-
 # C
-COLOR_WHITE =  (255,255,255)
+COLOR_WHITE = (255, 255, 255)
 COLOR_DARK_BLUE = (33, 57, 74)
 COLOR_LIGHT_BLUE = (173, 216, 230)
 
 CREDITS = [
-    "Autor e Desenvolvedor Principal:"," Gleizer Damasceno",
-    "Engenharia de Software e Roteiro:"," Gleizer Damasceno",
-    "Direção de Arte (Gerada por IA):"," Gleizer Damasceno",
-    "Design de Áudio:"," [Indicar Fonte da Música/Efeitos]",
+    "Autor e Desenvolvedor Principal:", " Gleizer Damasceno",
+    "Engenharia de Software e Roteiro:", " Gleizer Damasceno",
+    "Direção de Arte (Gerada por IA):", " Gleizer Damasceno",
+    "Design de Áudio:", " [Indicar Fonte da Música/Efeitos]",
     "Save Planet - 2026"
 ]
 
@@ -27,7 +26,7 @@ CREDITS_POSITIONS = [
 ]
 
 # E
-EVENT_ENEMY = pygame.USEREVENT +1
+EVENT_ENEMY = pygame.USEREVENT + 1
 
 ENTITY_SPEED = {
     'Level1Bg0': 0.1,
@@ -39,15 +38,27 @@ ENTITY_SPEED = {
     'Player': 5
 }
 
+ENTITY_HEALTH = {
+    'Level1Bg0': 999,
+    'Level1Bg1': 999,
+    'Level1Bg2': 999,
+    'Level1Bg3': 999,
+    'Level1Bg4': 999,
+    'Level1Bg5': 999,
+    'Level1Bg6': 999,
+    'Dust': 999,
+    'Planet': 999,
+    'Player': 300,
+    'Enemy1': 50,
+    'Enemy2': 60,
+}
 
 # M
-
 MENU_OPTION = ('Start',
                'Options',
                'Credits',
                'Exit'
-                )
-
+               )
 
 MENU_POSITIONS = [
     (790, 192),
@@ -56,7 +67,6 @@ MENU_POSITIONS = [
     (790, 366),
 ]
 
-
 # O
 
 OPTION_GAME = ["Easy",
@@ -64,7 +74,7 @@ OPTION_GAME = ["Easy",
                "Hard",
                "Very Hard",
                "Back"
-]
+               ]
 
 OPTION_GAME_POSITIONS = [
     (790, 225, 23),
@@ -79,4 +89,3 @@ SPAWN_TIME = 4000
 # W
 WIN_WIDTH = 917
 WIN_HEIGHT = 514
-

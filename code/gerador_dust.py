@@ -18,18 +18,17 @@ DENSIDADE = 0.70
 MARGEM_TOPO = 28
 MARGEM_BAIXO = 28
 
+
 def qtd(valor):
     return max(1, int(valor * DENSIDADE))
 
 
-
 def criar_nuvem(
-    raio,
-    cor,
-    alpha_max,
-    expoente=3
+        raio,
+        cor,
+        alpha_max,
+        expoente=3
 ):
-
     surf = pygame.Surface(
         (raio * 2, raio * 2),
         pygame.SRCALPHA
@@ -46,7 +45,6 @@ def criar_nuvem(
             distancia = math.sqrt(dx * dx + dy * dy)
 
             if distancia < raio:
-
                 d = distancia / raio
 
                 fade = (1 - d) ** expoente
@@ -62,8 +60,8 @@ def criar_nuvem(
 
     return surf
 
-def gerar_y_seguro(raio):
 
+def gerar_y_seguro(raio):
     return random.randint(
         MARGEM_TOPO + raio // 3,
         WIN_HEIGHT - MARGEM_BAIXO - raio // 3
@@ -71,7 +69,6 @@ def gerar_y_seguro(raio):
 
 
 for _ in range(qtd(18)):
-
     raio = random.randint(150, 320)
 
     x = random.randint(0, WIN_WIDTH)
@@ -101,7 +98,6 @@ for _ in range(qtd(18)):
         special_flags=pygame.BLEND_ALPHA_SDL2
     )
 
-
 for _ in range(qtd(24)):
 
     centro_x = random.randint(0, WIN_WIDTH)
@@ -109,7 +105,6 @@ for _ in range(qtd(24)):
     centro_y = gerar_y_seguro(140)
 
     for _ in range(qtd(7)):
-
         raio = random.randint(90, 220)
 
         x = centro_x + random.randint(-150, 150)
@@ -139,7 +134,6 @@ for _ in range(qtd(24)):
             special_flags=pygame.BLEND_ALPHA_SDL2
         )
 
-
 for _ in range(qtd(40)):
 
     centro_x = random.randint(0, WIN_WIDTH)
@@ -147,7 +141,6 @@ for _ in range(qtd(40)):
     centro_y = gerar_y_seguro(90)
 
     for _ in range(qtd(8)):
-
         raio = random.randint(50, 140)
 
         x = centro_x + random.randint(-100, 100)
@@ -177,9 +170,7 @@ for _ in range(qtd(40)):
             special_flags=pygame.BLEND_ALPHA_SDL2
         )
 
-
 for _ in range(qtd(90)):
-
     raio = random.randint(20, 70)
 
     x = random.randint(0, WIN_WIDTH)
@@ -209,9 +200,7 @@ for _ in range(qtd(90)):
         special_flags=pygame.BLEND_ALPHA_SDL2
     )
 
-
 for _ in range(qtd(220)):
-
     raio = random.randint(8, 26)
 
     x = random.randint(0, WIN_WIDTH)
@@ -235,9 +224,7 @@ for _ in range(qtd(220)):
         special_flags=pygame.BLEND_ALPHA_SDL2
     )
 
-
 for _ in range(qtd(1200)):
-
     x = random.randint(0, WIN_WIDTH)
 
     y = random.randint(
@@ -263,7 +250,6 @@ for _ in range(qtd(1200)):
         tamanho
     )
 
-
 for _ in range(qtd(50)):
 
     x = random.randint(0, WIN_WIDTH)
@@ -283,10 +269,9 @@ for _ in range(qtd(50)):
     )
 
     for i in range(altura):
-
         fade = (
-            1 -
-            abs(i - altura / 2) / (altura / 2)
+                1 -
+                abs(i - altura / 2) / (altura / 2)
         )
 
         alpha = int(22 * fade)
@@ -314,7 +299,6 @@ for _ in range(qtd(50)):
         special_flags=pygame.BLEND_ALPHA_SDL2
     )
 
-
 mini = pygame.transform.smoothscale(
     imagem_poeira,
     (WIN_WIDTH // 2, WIN_HEIGHT // 2)
@@ -330,7 +314,6 @@ imagem_poeira.blit(
     (0, 0),
     special_flags=pygame.BLEND_ALPHA_SDL2
 )
-
 
 fade_surface = pygame.Surface(
     (WIN_WIDTH, WIN_HEIGHT),

@@ -21,10 +21,9 @@ class CreditsMenu:
             self.clock.tick(60)
             self.window.blit(source=self.surf, dest=self.rect)
             self.credits_text(26, "Save Planet:", COLOR_DARK_BLUE, ((767), 63))
-            self.credits_text(26, "Defence Force", COLOR_DARK_BLUE, ((765), 90 ))
+            self.credits_text(26, "Defence Force", COLOR_DARK_BLUE, ((765), 90))
 
             self.credits_text(20, "Credits", COLOR_WHITE, ((767), 163))
-
 
             for i in range(len(CREDITS)):
                 pos_x, pos_y, text_size = CREDITS_POSITIONS[i]
@@ -44,8 +43,7 @@ class CreditsMenu:
 
             pygame.display.flip()
 
-
-    def credits_text(self, text_size: int, text: str, text_color: tuple, text_center_pos: tuple ):
+    def credits_text(self, text_size: int, text: str, text_color: tuple, text_center_pos: tuple):
         text_font: Font = pygame.font.SysFont(name="Arial", size=text_size, bold=True)
         text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()
         text_rect: Rect = text_surf.get_rect(center=text_center_pos)
