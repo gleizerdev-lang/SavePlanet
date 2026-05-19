@@ -4,8 +4,8 @@ import pygame.constants
 COLOR_WHITE = (255, 255, 255)
 COLOR_DARK_BLUE = (33, 57, 74)
 COLOR_LIGHT_BLUE = (173, 216, 230)
-COLOR_GREEN = (0,128,0)
-COLOR_CYAN = (0,128,128)
+COLOR_GREEN = (0, 128, 0)
+COLOR_CYAN = (0, 128, 128)
 
 CREDITS = [
     "Autor e Desenvolvedor Principal:", " Gleizer Damasceno",
@@ -35,6 +35,8 @@ ENTITY_DAMAGE = {
     'Level1Bg4': 0,
     'Level1Bg5': 0,
     'Level1Bg6': 0,
+    'Level2Bg0': 0,
+    'Level2Bg1': 0,
     'Dust': 0,
     'Planet': 999,
     'Player': 1,
@@ -45,10 +47,12 @@ ENTITY_DAMAGE = {
 
 # E
 EVENT_ENEMY = pygame.USEREVENT + 1
-
+EVENT_TIMEOUT = pygame.USEREVENT + 2
 ENTITY_SPEED = {
     'Level1Bg0': 0.1,
     'Level1Bg1': 0.1,
+    'Level2Bg0': 0,
+    'Level2Bg1': 0,
     'Dust': 0.7,
     'Planet': 0,
     'Enemy1': 3,
@@ -65,6 +69,8 @@ ENTITY_HEALTH = {
     'Level1Bg4': 999,
     'Level1Bg5': 999,
     'Level1Bg6': 999,
+    'Level2Bg0': 999,
+    'Level2Bg1': 999,
     'Dust': 999,
     'Planet': 999,
     'Player': 300,
@@ -73,7 +79,7 @@ ENTITY_HEALTH = {
     'Enemy2': 60,
 }
 
-ENTITY_SHOT_DELAY  = {
+ENTITY_SHOT_DELAY = {
     'Player': 15,
 }
 
@@ -85,6 +91,8 @@ ENTITY_SCORE = {
     'Level1Bg4': 0,
     'Level1Bg5': 0,
     'Level1Bg6': 0,
+    'Level2Bg0': 0,
+    'Level2Bg1': 0,
     'Planet': 0,
     'Player': 0,
     'Dust': 0,
@@ -129,7 +137,13 @@ PLAYER_KEY_SHOOT = {
     'Player': pygame.K_UP
 }
 
+# S
 SPAWN_TIME = 4000
+
+# T
+TIMEOUT_LEVEL = 20000
+TIMEOUT_STEP = 100
+
 
 # W
 WIN_WIDTH = 917

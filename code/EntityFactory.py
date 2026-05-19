@@ -13,21 +13,26 @@ class EntityFactory:
         match entity_name:
             case 'Level1Bg':
                 list_bg = []
-
-                for i in range(2):
+                for i in range(2): #level1Bg-images number
                     list_bg.append(Background(f'Level1Bg{i}', (0, 0)))
                     list_bg.append(Background(f'Level1Bg{i}', (0, WIN_HEIGHT)))
-
                 list_bg.append(Background('Dust', (0, 0)))
                 list_bg.append(Background('Dust', (0, WIN_HEIGHT)))
-
-                #
                 list_bg.append(Background('Planet', (146, 225)))
-
                 return list_bg
 
-            case 'Enemy1':
+            case 'Level2Bg':
+                list_bg = []
+                for i in range(2): #level2Bg-images number
+                    list_bg.append(Background(f'Level2Bg{i}', (0, 0)))
+                    list_bg.append(Background(f'Level2Bg{i}', (0, WIN_HEIGHT)))
+                list_bg.append(Background('Dust', (0, 0)))
+                list_bg.append(Background('Dust', (0, WIN_HEIGHT)))
+                list_bg.append(Background('Planet', (146, 225)))
+                return list_bg
 
+
+            case 'Enemy1':
                 enemy = Enemy('Enemy1', (random.randint(60, WIN_WIDTH - 60), -60))
                 return enemy
 
