@@ -6,7 +6,7 @@ class Planet(Entity):
     def __init__(self, name: str, position: tuple):
         super().__init__(name, position)
 
-        self.original_image = self.image
+        self.original_surf = self.surf
         self.angle = 0  # Ângulo inicial da rotação
 
     def move(self):
@@ -17,3 +17,5 @@ class Planet(Entity):
         self.surf = pygame.transform.rotozoom(self.original_surf, self.angle, 1.0)
 
         self.rect = self.surf.get_rect(center=(self.center_x_f, self.center_y_f))
+
+        self.mask = pygame.mask.from_surface(self.surf)

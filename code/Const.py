@@ -136,6 +136,8 @@ OPTION_GAME_POSITIONS = [
 PLAYER_KEY_SHOOT = {
     'Player': pygame.K_UP
 }
+PLAYER_HIT_DAMAGE = 100
+PLANET_HIT_DAMAGE = 30
 
 # S
 SPAWN_TIME = 4000
@@ -148,3 +150,57 @@ TIMEOUT_STEP = 100
 # W
 WIN_WIDTH = 917
 WIN_HEIGHT = 514
+
+CURRENT_DIFFICULTY = "Medium"
+
+CURRENT_DIFFICULTY = "Medium"
+
+def update_difficulty(difficulty_level: str):
+    global SPAWN_TIME, PLAYER_HIT_DAMAGE, PLANET_HIT_DAMAGE
+    global ENTITY_HEALTH, ENTITY_SPEED, ENTITY_SHOT_DELAY, CURRENT_DIFFICULTY
+
+    CURRENT_DIFFICULTY = difficulty_level
+
+    if difficulty_level == "Easy":
+        SPAWN_TIME = 4000
+        PLAYER_HIT_DAMAGE = 50
+        PLANET_HIT_DAMAGE = 10
+        ENTITY_HEALTH['Enemy1'] = 30
+        ENTITY_HEALTH['Enemy2'] = 40
+        ENTITY_SPEED['Enemy1'] = 2
+        ENTITY_SPEED['Enemy2'] = 1
+        ENTITY_SPEED['Player'] = 5
+        ENTITY_SHOT_DELAY['Player'] = 15
+
+    elif difficulty_level == "Medium":
+        SPAWN_TIME = 2500
+        PLAYER_HIT_DAMAGE = 100
+        PLANET_HIT_DAMAGE = 30
+        ENTITY_HEALTH['Enemy1'] = 50
+        ENTITY_HEALTH['Enemy2'] = 60
+        ENTITY_SPEED['Enemy1'] = 3
+        ENTITY_SPEED['Enemy2'] = 2
+        ENTITY_SPEED['Player'] = 6
+        ENTITY_SHOT_DELAY['Player'] = 12
+
+    elif difficulty_level == "Hard":
+        SPAWN_TIME = 1000
+        PLAYER_HIT_DAMAGE = 150
+        PLANET_HIT_DAMAGE = 50
+        ENTITY_HEALTH['Enemy1'] = 100
+        ENTITY_HEALTH['Enemy2'] = 120
+        ENTITY_SPEED['Enemy1'] = 5
+        ENTITY_SPEED['Enemy2'] = 4
+        ENTITY_SPEED['Player'] = 8
+        ENTITY_SHOT_DELAY['Player'] = 9
+
+    elif difficulty_level == "Very Hard":
+        SPAWN_TIME = 500
+        PLAYER_HIT_DAMAGE = 300
+        PLANET_HIT_DAMAGE = 100
+        ENTITY_HEALTH['Enemy1'] = 150
+        ENTITY_HEALTH['Enemy2'] = 200
+        ENTITY_SPEED['Enemy1'] = 7
+        ENTITY_SPEED['Enemy2'] = 6
+        ENTITY_SPEED['Player'] = 10
+        ENTITY_SHOT_DELAY['Player'] = 6

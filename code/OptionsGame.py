@@ -4,7 +4,9 @@ import sys
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import COLOR_DARK_BLUE, COLOR_WHITE, CREDITS, OPTION_GAME, OPTION_GAME_POSITIONS, COLOR_LIGHT_BLUE
+# IMPORTANTE: Importamos o CURRENT_DIFFICULTY aqui em cima
+from code.Const import COLOR_DARK_BLUE, COLOR_WHITE, OPTION_GAME, OPTION_GAME_POSITIONS, COLOR_LIGHT_BLUE, \
+    update_difficulty, CURRENT_DIFFICULTY
 
 
 class OptionsGame:
@@ -15,7 +17,13 @@ class OptionsGame:
         self.clock = pygame.time.Clock()
 
     def run(self):
-        option_game = 0
+        # MÁGICA AQUI: O menu descobre o índice da dificuldade atual (ex: "Medium" vira 1)
+        # Se por algum motivo não achar, ele usa 0 (Easy) como segurança.
+        try:
+            option_game = OPTION_GAME.index(CURRENT_DIFFICULTY)
+        except ValueError:
+            option_game = 0
+
         while True:
 
             self.clock.tick(60)
@@ -23,11 +31,10 @@ class OptionsGame:
             self.options_game_text(26, "Save Planet:", COLOR_DARK_BLUE, ((767), 63))
             self.options_game_text(26, "Defence Force", COLOR_DARK_BLUE, ((765), 90))
 
-            self.options_game_text(22, "SELECT DIFFICULTY", COLOR_LIGHT_BLUE, ((768), 165))
+            # Exibe um texto extra mostrando qual é a dificuldade que está ativa no momento no jogo
+            self.options_game_text(18, f"CURRENT: {CURRENT_DIFFICULTY.upper()}", COLOR_DARK_BLUE, (768, 135))
 
-            for i in range(len(OPTION_GAME)):
-                pos_x, pos_y, text_size = OPTION_GAME_POSITIONS[i]
-                self.options_game_text(text_size, OPTION_GAME[i], COLOR_WHITE, (pos_x, pos_y))
+            self.options_game_text(22, "SELECT DIFFICULTY", COLOR_LIGHT_BLUE, ((768), 165))
 
             for i in range(len(OPTION_GAME)):
                 posicao = OPTION_GAME[i]
@@ -60,8 +67,14 @@ class OptionsGame:
                         else:
                             option_game = len(OPTION_GAME) - 1
 
-                        if event.key == pygame.K_RETURN:
-                            pass
+                    if event.key == pygame.K_RETURN:
+                        selected_option = OPTION_GAME[option_game]
+
+                        if selected_option != "Back":
+                            update_difficulty(selected_option)
+                            print(f"Dificuldade alterada para: {selected_option}")
+
+                        return
 
     def options_game_text(self, text_size: int, text: str, text_color: tuple, text_center_pos: tuple):
         text_font: Font = pygame.font.SysFont(name="Arial", size=text_size, bold=True)

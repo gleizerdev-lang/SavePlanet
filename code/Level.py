@@ -20,7 +20,7 @@ class Level:
         self.name = name
         self.game_mode = game_mode
         self.entity_list = []
-        # Puxa as 4 imagens da Factory de uma vez só
+        # Puxa as imagens da Factory de uma vez só
         self.entity_list.extend(EntityFactory.get_entity(self.name + 'Bg'))
         player = EntityFactory.get_entity('Player')
         player.score = player_score[0]
@@ -55,6 +55,7 @@ class Level:
                 if ent.name == 'Player':
                     self.window.blit(source=ent.surf, dest=ent.rect)
 
+            # Loop de Eventos do Sistema
             for event in pygame.event.get():
 
                 if event.type == pygame.QUIT:
@@ -63,33 +64,35 @@ class Level:
 
                 if event.type == EVENT_ENEMY:
                     choice = random.choice(('Enemy1', 'Enemy2'))
-
                     self.entity_list.append(
                         EntityFactory.get_entity(choice)
                     )
+
                 if event.type == EVENT_TIMEOUT:
                     self.timeout -= TIMEOUT_STEP
                     if self.timeout == 0:
-                       for ent in self.entity_list:
-                           if isinstance(ent, Player) and ent.name == 'Player':
-                               player_score[0] = ent.score
-                       return True
+                        for ent in self.entity_list:
+                            if isinstance(ent, Player) and ent.name == 'Player':
+                                player_score[0] = ent.score
+                        return True
 
+            # Lógica de Sobrevivência (Verifica se o Player ainda existe na lista)
+            found_player = False
+            for ent in self.entity_list:
+                if isinstance(ent, Player) and ent.name == 'Player':
+                    found_player = True
+                    # Atualiza o score constantemente para não perdê-lo ao morrer
+                    player_score[0] = ent.score
 
-                found_player = False
-                for ent in self.entity_list:
-                    if isinstance(ent, Player):
-                        found_player = True
+            # Se o jogador sumiu da lista (morreu por falta de health), encerra a fase como Derrota
+            if not found_player:
+                return False
 
-                if not found_player:
-                    return False
-
-
+            # Renderização de textos na interface (HUD)
             for ent in self.entity_list:
                 if ent.name == 'Player':
                     self.level_text(14, f'Player Heath: {ent.health} | Score: {ent.score}', COLOR_GREEN, (10, 25))
 
-            # printed text
             self.level_text(14, f'{self.name} - Timeout: {self.timeout / 1000 :.1f}s', COLOR_WHITE, (10, 5))
 
             self.level_text(14, f'fps: {clock.get_fps() :.0f}', COLOR_WHITE, (10, WIN_HEIGHT - 35))
@@ -97,14 +100,14 @@ class Level:
             self.level_text(14, f'entidades: {len(self.entity_list)}', COLOR_WHITE, (10, WIN_HEIGHT - 20))
 
             pygame.display.flip()
-            # collisios
+
+            # Processamento de colisões e checagem de integridade de vida
             EntityMediator.verify_collision(entity_list=self.entity_list)
             EntityMediator.verify_health(entity_list=self.entity_list)
 
     def level_text(self, text_size: int, text: str,
                    text_color: tuple, text_pos: tuple):
 
-        # printed texto
         text_font: Font = pygame.font.SysFont(
             name="Lucida Sans Typewriter",
             size=text_size
